@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
  import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -22,6 +23,12 @@ public class GameController {
     public List<game> getAllGames() {
         return gameRepository.findAll();
     }
+
+
+   @GetMapping("/{id}")
+   public Optional<game> getAGame(@PathVariable Integer id) {
+        return gameRepository.findById(id);
+   }
 
     @PostMapping
     public game addNewGame(@RequestBody game newGame) {
